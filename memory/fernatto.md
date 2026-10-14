@@ -19,3 +19,12 @@ Blockers:
 - coppicelane.myshopify.com: DNS ENOTFOUND (shop handle doesn't resolve) and denied by network policy
 - policy-studio.vercel.app: denied by environment network policy (403 CONNECT)
 - No store changes made. Waiting on owner decision.
+
+## Session 2026-10-14 (cont.) — owner decisions
+- Rebuild THIS store (8ptbn0-ra) as the UK store for SANA PARTNERS LTD. Currency stays EUR (paid orders exist) unless Shopify Support switches it.
+- Approved: archive all 42 existing products + disable US and Italy markets once the UK store is ready.
+- Support email: contact@fernatto.com (owner says mailbox exists).
+- New blocker: sandbox network denies ALL external hosts (curl 403 CONNECT; WebFetch DNS fails). Only WebSearch works.
+  → can't verify images/prices/specs or reach Policy Studio. Asked owner to set Network access = Full (or allow-list) and start a fresh session.
+- coppicelane: not found by web search either; asked owner for a correct URL.
+- Design brief posted, awaiting owner's one-line reaction. No store changes made yet.
