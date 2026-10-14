@@ -1,0 +1,13 @@
+<article class="wrap section narrow">
+  <header class="page-head">
+    <p class="eyebrow">{{ article.published_at | date: format: 'date' }}</p>
+    <h1 class="page-head__title">{{ article.title }}</h1>
+  </header>
+  {%- if article.image -%}<div class="article__img">{{ article.image | image_url: width: 1600 | image_tag: alt: article.title | escape }}</div>{%- endif -%}
+  <div class="rte">{{ article.content }}</div>
+  <p><a class="link" href="{{ blog.url }}">&larr; {{ blog.title }}</a></p>
+</article>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

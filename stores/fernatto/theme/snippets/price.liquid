@@ -1,0 +1,23 @@
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant
+  assign compare = target.compare_at_price
+  assign on_sale = false
+  if compare > target.price
+    assign on_sale = true
+  endif
+-%}
+<div class="price{% if on_sale %} price--sale{% endif %}">
+  {%- if product.price_varies and variant == blank -%}
+    <span class="price__now">{{ 'products.price.from_html' | t: price: product.price_min | money }}</span>
+  {%- else -%}
+    <span class="visually-hidden">{{ 'products.price.regular' | t }}</span>
+    <span class="price__now">{{ target.price | money }}</span>
+    {%- if on_sale -%}
+      <span class="visually-hidden">{{ 'products.price.compare' | t }}</span>
+      <s class="price__was">{{ compare | money }}</s>
+    {%- endif -%}
+  {%- endif -%}
+  {%- if show_tax_note -%}
+    <p class="price__note">{{ 'products.price.tax_included' | t }}</p>
+  {%- endif -%}
+</div>

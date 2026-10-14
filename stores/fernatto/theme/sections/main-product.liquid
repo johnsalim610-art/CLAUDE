@@ -1,0 +1,107 @@
+{%- assign current = product.selected_or_first_available_variant -%}
+<section class="wrap product" data-product>
+  <div class="product__gallery">
+    {%- assign featured = current.featured_media | default: product.featured_media -%}
+    <div class="product__main">
+      {%- if featured -%}
+        {{ featured | image_url: width: 1500 | image_tag:
+          widths: '600, 900, 1200, 1500',
+          sizes: '(min-width: 990px) 55vw, 100vw',
+          alt: featured.alt | default: product.title | escape,
+          data-main-image: ''
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+      {%- endif -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <ul class="product__thumbs">
+        {%- for media in product.media -%}
+          {%- if media.media_type == 'image' -%}
+            <li>
+              <button type="button" class="product__thumb{% if media.id == featured.id %} is-active{% endif %}" data-thumb data-src="{{ media | image_url: width: 1500 }}" data-alt="{{ media.alt | escape }}" aria-label="{{ 'products.view_image' | t: n: forloop.index }}">
+                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+              </button>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  <div class="product__info">
+    {%- if product.vendor != blank and product.vendor != shop.name -%}<p class="eyebrow">{{ product.vendor }}</p>{%- endif -%}
+    <h1 class="product__title">{{ product.title }}</h1>
+    <div data-price>{% render 'price', product: product, variant: current, show_tax_note: true %}</div>
+
+    {%- form 'product', product, class: 'product__form', data-product-form: '' -%}
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="field">
+            <label for="opt-{{ forloop.index }}">{{ option.name }}</label>
+            <select id="opt-{{ forloop.index }}" data-option="{{ forloop.index0 }}">
+              {%- for value in option.values -%}
+                <option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+      <select name="id" class="visually-hidden" data-variant-select aria-hidden="true" tabindex="-1">
+        {%- for v in product.variants -%}
+          <option value="{{ v.id }}" data-options="{{ v.options | join: '|' | escape }}" data-price="{{ v.price | money | escape }}" data-compare="{% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | escape }}{% endif %}" data-available="{{ v.available }}"{% if v.id == current.id %} selected{% endif %}>{{ v.title }}</option>
+        {%- endfor -%}
+      </select>
+      <div class="field field--qty">
+        <label for="qty">{{ 'products.quantity' | t }}</label>
+        <input id="qty" type="number" name="quantity" value="1" min="1" inputmode="numeric">
+      </div>
+      <button type="submit" name="add" class="btn btn--block" data-add{% unless current.available %} disabled{% endunless %}>
+        {%- if current.available -%}{{ 'products.add_to_cart' | t }}{%- else -%}{{ 'products.badge.sold_out' | t }}{%- endif -%}
+      </button>
+      {{ form | payment_button }}
+    {%- endform -%}
+
+    <ul class="product__assure">
+      <li>{% render 'icon', name: 'van' %}{{ 'products.assure.delivery' | t }}</li>
+      <li>{% render 'icon', name: 'return' %}{{ 'products.assure.returns' | t }}</li>
+      <li>{% render 'icon', name: 'lock' %}{{ 'products.assure.secure' | t }}</li>
+    </ul>
+
+    <div class="rte product__desc">{{ product.description }}</div>
+
+    <details class="faq__item">
+      <summary>{{ 'products.delivery_returns' | t }}<span class="faq__icon">{% render 'icon', name: 'plus' %}</span></summary>
+      <div class="rte">
+        <p>{{ 'products.delivery_text' | t }}</p>
+        <p>{{ 'products.returns_text' | t }}</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 500 | json }},
+  {%- if product.featured_image -%}"image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],{%- endif -%}
+  "brand": { "@type": "Brand", "name": {{ product.metafields.mm-google-shopping.brand | default: product.vendor | json }} },
+  {%- if current.sku != blank -%}"sku": {{ current.sku | json }},{%- endif -%}
+  {%- if current.barcode != blank -%}"gtin": {{ current.barcode | json }},{%- endif -%}
+  "offers": {
+    "@type": "Offer",
+    "url": {{ request.origin | append: current.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ current.price | divided_by: 100.0 | json }},
+    "availability": "https://schema.org/{% if current.available %}InStock{% else %}OutOfStock{% endif %}",
+    "itemCondition": "https://schema.org/NewCondition"
+  }
+}
+</script>
+
+{% schema %}
+{ "name": "Product", "settings": [] }
+{% endschema %}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#2F4A3A">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- comment -%}
+    GOOGLE SITE VERIFICATION SLOT — Phase B adds the Merchant Center / Search Console
+    <meta name="google-site-verification" content="..."> tag on the line below.
+    It must be carried over into EVERY future version of this theme.
+  {%- endcomment -%}
+  {%- comment -%} google-site-verification:start {%- endcomment -%}
+  {%- comment -%} google-site-verification:end {%- endcomment -%}
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+  {%- endif -%}
+
+  <title>{{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
+
+  {% render 'meta-tags' %}
+
+  {%- assign heading_font = settings.type_heading_font -%}
+  {%- assign body_font = settings.type_body_font -%}
+  {%- assign body_font_bold = body_font | font_modify: 'weight', '500' -%}
+  <style>
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+    :root {
+      --c-bg: {{ settings.color_background }};
+      --c-surface: {{ settings.color_surface }};
+      --c-ink: {{ settings.color_text }};
+      --c-muted: {{ settings.color_muted }};
+      --c-brand: {{ settings.color_brand }};
+      --c-on-brand: {{ settings.color_on_brand }};
+      --c-accent: {{ settings.color_accent }};
+      --c-line: {{ settings.color_line }};
+      --f-head: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+      --f-head-w: {{ heading_font.weight }};
+      --f-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+      --f-body-w: {{ body_font.weight }};
+      --radius: 6px;
+      --page: 1280px;
+    }
+  </style>
+  {{ 'fernatto.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'fernatto.js' | asset_url }}" defer></script>
+
+  {{ content_for_header }}
+</head>
+<body class="template-{{ template.name }}">
+  <a class="skip-link" href="#main">{{ 'accessibility.skip_to_content' | t }}</a>
+  {% sections 'header-group' %}
+  <main id="main" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+  {% sections 'footer-group' %}
+</body>
+</html>

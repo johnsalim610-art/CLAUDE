@@ -1,0 +1,28 @@
+{
+  "current": {
+    "color_background": "#F6F2EA",
+    "color_surface": "#EDE6DA",
+    "color_text": "#1E1F1C",
+    "color_muted": "#55574F",
+    "color_brand": "#2F4A3A",
+    "color_on_brand": "#F6F2EA",
+    "color_accent": "#A4542F",
+    "color_line": "#D9D0C1",
+    "type_heading_font": "cormorant_n5",
+    "type_body_font": "jost_n4",
+    "legal_name": "SANA PARTNERS LTD",
+    "legal_address": "Top Floor 19 Windsor Place, Cardiff, Wales, CF10 3BY, United Kingdom",
+    "legal_company_no": "13363014",
+    "legal_vat": "",
+    "shipping_terms": "Free UK delivery in 3–6 business days",
+    "support_email": "contact@fernatto.com",
+    "support_phone": "+44 7482 574528"
+  },
+  "presets": {
+    "Default": {
+      "color_background": "#F6F2EA",
+      "type_heading_font": "cormorant_n5",
+      "type_body_font": "jost_n4"
+    }
+  }
+}

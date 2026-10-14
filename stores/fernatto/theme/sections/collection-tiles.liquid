@@ -1,0 +1,44 @@
+<section class="section">
+  <div class="wrap">
+    {%- if section.settings.title != blank -%}<h2 class="section__title">{{ section.settings.title }}</h2>{%- endif -%}
+    <ul class="tiles">
+      {%- for block in section.blocks -%}
+        {%- assign c = block.settings.collection -%}
+        {%- if c != blank -%}
+          <li class="tile" {{ block.shopify_attributes }}>
+            <a href="{{ c.url }}">
+              <div class="tile__media">
+                {%- assign img = block.settings.image | default: c.featured_image -%}
+                {%- if img -%}
+                  {{ img | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 25vw, 50vw', alt: c.title | escape }}
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}
+                {%- endif -%}
+              </div>
+              <span class="tile__label">{{ c.title }} {% render 'icon', name: 'chevron' %}</span>
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection tiles",
+  "max_blocks": 8,
+  "settings": [{ "type": "text", "id": "title", "label": "Heading", "default": "Shop by room" }],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "image_picker", "id": "image", "label": "Image override" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Collection tiles" }]
+}
+{% endschema %}

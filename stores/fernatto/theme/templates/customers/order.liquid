@@ -1,0 +1,11 @@
+<section class="wrap section narrow">
+  <h1 class="page-head__title">{{ 'customer.order' | t }} {{ order.name }}</h1>
+  <p class="muted">{{ order.created_at | date: format: 'date' }} · {{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+  <ul class="cart__items">
+    {%- for item in order.line_items -%}
+      <li class="cart__item"><span>{{ item.title }} × {{ item.quantity }}</span><strong>{{ item.final_line_price | money }}</strong></li>
+    {%- endfor -%}
+  </ul>
+  <p class="cart__total"><span>{{ 'cart.total' | t }}</span><strong>{{ order.total_price | money_with_currency }}</strong></p>
+  <p><a class="link" href="{{ routes.account_url }}">&larr; {{ 'customer.account' | t }}</a></p>
+</section>

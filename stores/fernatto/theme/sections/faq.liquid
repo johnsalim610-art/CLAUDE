@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="wrap narrow">
+    {%- if section.settings.title != blank -%}<h2 class="section__title center">{{ section.settings.title }}</h2>{%- endif -%}
+    <div class="faq">
+      {%- for block in section.blocks -%}
+        <details class="faq__item" {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}<span class="faq__icon">{% render 'icon', name: 'plus' %}</span></summary>
+          <div class="rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [{ "type": "text", "id": "title", "label": "Heading", "default": "Questions, answered" }],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How long does delivery take?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ" }]
+}
+{% endschema %}

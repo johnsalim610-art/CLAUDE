@@ -1,0 +1,25 @@
+<section class="wrap section">
+  <header class="page-head"><h1 class="page-head__title">{{ 'collections.all' | t }}</h1></header>
+  <ul class="tiles">
+    {%- for c in collections -%}
+      {%- if c.products_count > 0 and c.handle != 'frontpage' -%}
+        <li class="tile">
+          <a href="{{ c.url }}">
+            <div class="tile__media">
+              {%- if c.featured_image -%}
+                {{ c.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: c.title | escape }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}
+              {%- endif -%}
+            </div>
+            <span class="tile__label">{{ c.title }} {% render 'icon', name: 'chevron' %}</span>
+          </a>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</section>
+
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

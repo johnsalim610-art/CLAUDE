@@ -1,0 +1,12 @@
+{%- comment -%}
+  Trader identity line (UK). Values come from theme settings so they stay in one place.
+  Blank settings are omitted — never invent identifiers.
+{%- endcomment -%}
+<p class="trader">
+  {%- if settings.legal_name != blank -%}<span>{{ settings.legal_name }}</span>{%- endif -%}
+  {%- if settings.legal_address != blank -%}<span>{{ settings.legal_address }}</span>{%- endif -%}
+  {%- if settings.legal_company_no != blank -%}<span>{{ 'footer.company_no' | t }} {{ settings.legal_company_no }}</span>{%- endif -%}
+  {%- if settings.legal_vat != blank -%}<span>{{ 'footer.vat_no' | t }} {{ settings.legal_vat }}</span>{%- endif -%}
+  <span>{{ 'footer.prices_incl_tax' | t }}</span>
+  {%- if settings.shipping_terms != blank -%}<span>{{ settings.shipping_terms }}</span>{%- endif -%}
+</p>

@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Home, considered",
+        "title": "Pieces that make a house feel like home",
+        "text": "Furniture, lighting and kitchen essentials from trusted brands — delivered free across the UK.",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "trust": {
+      "type": "trust-strip",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "van", "title": "Free UK delivery", "text": "Delivered in 3–6 business days" } },
+        "t2": { "type": "item", "settings": { "icon": "return", "title": "14-day free returns", "text": "Prepaid label in the parcel" } },
+        "t3": { "type": "item", "settings": { "icon": "fern", "title": "Genuine brands", "text": "Official products, brand new" } },
+        "t4": { "type": "item", "settings": { "icon": "lock", "title": "Secure checkout", "text": "Encrypted payment" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    },
+    "tiles": { "type": "collection-tiles", "settings": { "title": "Shop by room" } },
+    "featured": { "type": "featured-collection", "settings": { "title": "Best sellers", "collection": "all", "limit": 8 } },
+    "story": {
+      "type": "rich-text",
+      "settings": {
+        "title": "Chosen with care",
+        "text": "<p>Fernatto is a small UK home store. We stock genuine products from established brands, chosen for how well they're made and how long they'll last — and we deliver them free to your door.</p>",
+        "button_label": "About us",
+        "button_link": "shopify://pages/about-us"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": { "title": "Questions, answered" },
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "How much is delivery and how long does it take?", "answer": "<p>Delivery to UK mainland addresses is free. We dispatch within 1–2 business days and delivery takes 2–4 business days, so your order arrives in 3–6 business days in total.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "Can I return something?", "answer": "<p>Yes. You can return any item within 14 days of delivery. Returns are free — a prepaid return label is included in your parcel — and there is no restocking fee.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "When will I get my refund?", "answer": "<p>We refund to your original payment method within 5 business days of receiving your return.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "Can I exchange an item?", "answer": "<p>Yes, exchanges are accepted within the same 14-day window. Contact us and we'll arrange it.</p>" } },
+        "q5": { "type": "question", "settings": { "question": "Are the products genuine?", "answer": "<p>Yes. Every product is brand new and genuine, sourced from the manufacturer or its authorised distribution.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"]
+    }
+  },
+  "order": ["hero", "trust", "tiles", "featured", "story", "faq"]
+}

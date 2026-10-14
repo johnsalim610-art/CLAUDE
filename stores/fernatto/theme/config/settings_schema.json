@@ -1,0 +1,47 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Fernatto",
+    "theme_version": "1.0.0",
+    "theme_author": "Fernatto",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      { "type": "color", "id": "color_background", "label": "Background", "default": "#F6F2EA" },
+      { "type": "color", "id": "color_surface", "label": "Surface", "default": "#EDE6DA" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#1E1F1C" },
+      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#55574F" },
+      { "type": "color", "id": "color_brand", "label": "Brand (fern)", "default": "#2F4A3A" },
+      { "type": "color", "id": "color_on_brand", "label": "Text on brand", "default": "#F6F2EA" },
+      { "type": "color", "id": "color_accent", "label": "Accent (clay)", "default": "#A4542F" },
+      { "type": "color", "id": "color_line", "label": "Lines", "default": "#D9D0C1" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "font_picker", "id": "type_heading_font", "label": "Headings", "default": "cormorant_n5" },
+      { "type": "font_picker", "id": "type_body_font", "label": "Body", "default": "jost_n4" }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [{ "type": "image_picker", "id": "favicon", "label": "Favicon (32×32)" }]
+  },
+  {
+    "name": "Trader identity",
+    "settings": [
+      { "type": "paragraph", "content": "Shown in the footer on every page. Leave a field blank to omit it — never invent identifiers." },
+      { "type": "text", "id": "legal_name", "label": "Legal name", "default": "SANA PARTNERS LTD" },
+      { "type": "text", "id": "legal_address", "label": "Registered address", "default": "Top Floor 19 Windsor Place, Cardiff, Wales, CF10 3BY, United Kingdom" },
+      { "type": "text", "id": "legal_company_no", "label": "Company number", "default": "13363014" },
+      { "type": "text", "id": "legal_vat", "label": "VAT number" },
+      { "type": "text", "id": "shipping_terms", "label": "Shipping terms", "default": "Free UK delivery in 3–6 business days" },
+      { "type": "text", "id": "support_email", "label": "Support email", "default": "contact@fernatto.com" },
+      { "type": "text", "id": "support_phone", "label": "Support phone", "default": "+44 7482 574528" }
+    ]
+  }
+]

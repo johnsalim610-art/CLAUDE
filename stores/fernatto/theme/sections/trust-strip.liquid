@@ -1,0 +1,38 @@
+<section class="trust">
+  <ul class="wrap trust__list">
+    {%- for block in section.blocks -%}
+      <li class="trust__item" {{ block.shopify_attributes }}>
+        {% render 'icon', name: block.settings.icon %}
+        <div>
+          <p class="trust__title">{{ block.settings.title }}</p>
+          {%- if block.settings.text != blank -%}<p class="trust__text">{{ block.settings.text }}</p>{%- endif -%}
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "van", "options": [
+          { "value": "van", "label": "Delivery" },
+          { "value": "return", "label": "Returns" },
+          { "value": "lock", "label": "Secure" },
+          { "value": "fern", "label": "Quality" },
+          { "value": "home", "label": "Home" }
+        ]},
+        { "type": "text", "id": "title", "label": "Title", "default": "Free UK delivery" },
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Trust strip" }]
+}
+{% endschema %}

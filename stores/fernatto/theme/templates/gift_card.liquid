@@ -1,0 +1,20 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ 'gift_card.title' | t }} &ndash; {{ shop.name }}</title>
+  {{ 'fernatto.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body>
+  <main class="wrap section narrow center">
+    {% render 'brand-mark', size: 48, wordmark: true %}
+    <h1 class="page-head__title">{{ 'gift_card.title' | t }}</h1>
+    <p class="price__now">{{ gift_card.balance | money }}</p>
+    <p><code>{{ gift_card.code | format_code }}</code></p>
+    {%- if gift_card.expired -%}<p class="muted">{{ 'gift_card.expired' | t }}</p>{%- endif -%}
+    <p><a class="btn" href="{{ shop.url }}">{{ 'cart.continue' | t }}</a></p>
+  </main>
+</body>
+</html>

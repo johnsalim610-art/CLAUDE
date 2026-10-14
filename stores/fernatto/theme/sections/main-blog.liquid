@@ -1,0 +1,24 @@
+<section class="wrap section">
+  <header class="page-head"><h1 class="page-head__title">{{ blog.title }}</h1></header>
+  {%- paginate blog.articles by 12 -%}
+    <div class="grid grid--3">
+      {%- for article in blog.articles -%}
+        <article class="card">
+          <a class="card__link" href="{{ article.url }}">
+            {%- if article.image -%}<div class="card__media">{{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: article.title | escape }}</div>{%- endif -%}
+            <div class="card__body">
+              <p class="card__vendor">{{ article.published_at | date: format: 'date' }}</p>
+              <h2 class="card__title">{{ article.title }}</h2>
+              <p class="muted">{{ article.excerpt_or_content | strip_html | truncate: 140 }}</p>
+            </div>
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}<nav class="pager">{{ paginate | default_pagination }}</nav>{%- endif -%}
+  {%- endpaginate -%}
+</section>
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

@@ -1,0 +1,54 @@
+<header class="header" data-header>
+  <div class="wrap header__inner">
+    <button class="header__toggle" type="button" aria-controls="nav-drawer" aria-expanded="false" data-nav-toggle>
+      {% render 'icon', name: 'menu' %}<span class="visually-hidden">{{ 'general.menu' | t }}</span>
+    </button>
+
+    <a class="header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, class: 'header__logo-img', style: 'max-width:180px;height:auto' }}
+      {%- else -%}
+        {% render 'brand-mark', size: 34, wordmark: true %}
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav" id="nav-drawer" aria-label="{{ 'general.main_nav' | t }}" data-nav>
+      <button class="header__close" type="button" data-nav-toggle>{% render 'icon', name: 'close' %}<span class="visually-hidden">{{ 'general.close' | t }}</span></button>
+      <ul class="nav">
+        {%- for link in section.settings.menu.links -%}
+          <li class="nav__item{% if link.links != blank %} nav__item--parent{% endif %}">
+            <a class="nav__link{% if link.active %} is-active{% endif %}" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- if link.links != blank -%}
+              <ul class="nav__sub">
+                {%- for child in link.links -%}
+                  <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__tools">
+      <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.search' | t }}">{% render 'icon', name: 'search' %}</a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="header__icon" aria-label="{{ 'customer.account' | t }}">{% render 'icon', name: 'user' %}</a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="header__icon header__cart" aria-label="{{ 'cart.title' | t }}">
+        {% render 'icon', name: 'cart' %}
+        {%- if cart.item_count > 0 -%}<span class="header__count">{{ cart.item_count }}</span>{%- endif -%}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image (optional — the SVG brand mark is used when blank)" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

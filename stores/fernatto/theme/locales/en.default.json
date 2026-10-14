@@ -1,0 +1,94 @@
+{
+  "accessibility": { "skip_to_content": "Skip to content" },
+  "general": {
+    "page": "Page {{ page }}",
+    "menu": "Menu",
+    "close": "Close",
+    "main_nav": "Main navigation",
+    "search": "Search",
+    "view_all": "View all",
+    "pagination": "Pagination"
+  },
+  "products": {
+    "add_to_cart": "Add to basket",
+    "quantity": "Quantity",
+    "view_image": "View image {{ n }}",
+    "delivery_returns": "Delivery & returns",
+    "delivery_text": "Free UK delivery. Dispatched within 1–2 business days, delivered in 2–4 business days — 3–6 business days in total.",
+    "returns_text": "Return within 14 days of delivery for free — a prepaid label is included in your parcel. Exchanges accepted, no restocking fee, refunds within 5 business days of receiving your return.",
+    "badge": { "sale": "Sale", "sold_out": "Sold out" },
+    "assure": {
+      "delivery": "Free UK delivery in 3–6 business days",
+      "returns": "14-day free returns, label in the parcel",
+      "secure": "Secure, encrypted checkout"
+    },
+    "price": {
+      "regular": "Price",
+      "compare": "Was",
+      "from_html": "From {{ price }}",
+      "tax_included": "Price includes VAT where applicable. Free UK delivery."
+    }
+  },
+  "collections": {
+    "all": "All collections",
+    "count": { "one": "{{ count }} product", "other": "{{ count }} products" },
+    "empty": "No products in this collection yet.",
+    "sort": "Sort by"
+  },
+  "cart": {
+    "title": "Basket",
+    "checkout": "Checkout",
+    "continue": "Continue shopping",
+    "empty": "Your basket is empty.",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "update": "Update basket",
+    "taxes_shipping": "Prices include VAT where applicable. UK delivery is free."
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "order": "Order number (optional)",
+    "message": "Message",
+    "send": "Send message",
+    "success": "Thanks — we've received your message and will reply by email."
+  },
+  "customer": {
+    "account": "Account",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "register": "Create account",
+    "recover": "Forgotten your password? Enter your email",
+    "recover_submit": "Reset password",
+    "recover_sent": "We've emailed you a link to reset your password.",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "orders": "Order history",
+    "order": "Order",
+    "no_orders": "You haven't placed any orders yet.",
+    "addresses": "Addresses",
+    "add_address": "Add an address",
+    "address1": "Address",
+    "city": "Town or city",
+    "zip": "Postcode",
+    "activate": "Activate account",
+    "reset": "Choose a new password",
+    "password_confirm": "Confirm password"
+  },
+  "footer": {
+    "legal": "Legal",
+    "payment_methods": "Payment methods",
+    "company_no": "Company no.",
+    "vat_no": "VAT no.",
+    "prices_incl_tax": "Prices include VAT where applicable"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search products",
+    "results": { "one": "{{ count }} result for “{{ terms }}”", "other": "{{ count }} results for “{{ terms }}”" }
+  },
+  "notfound": { "title": "Page not found", "text": "The page you were looking for has moved or doesn't exist." },
+  "gift_card": { "title": "Your gift card", "expired": "This gift card has expired." },
+  "password": { "title": "Opening soon", "label": "Password", "enter": "Enter" }
+}

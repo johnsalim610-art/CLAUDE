@@ -1,0 +1,9 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement": { "type": "announcement-bar", "settings": { "text": "Free UK delivery in 3–6 business days · 14-day free returns", "link": "" } },
+    "header": { "type": "header", "settings": { "menu": "main-menu" } }
+  },
+  "order": ["announcement", "header"]
+}

@@ -1,0 +1,61 @@
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      {% render 'brand-mark', size: 40, wordmark: true %}
+      {%- if section.settings.blurb != blank -%}<p class="footer__blurb">{{ section.settings.blurb }}</p>{%- endif -%}
+      <ul class="footer__contact">
+        {%- if settings.support_email != blank -%}<li>{% render 'icon', name: 'mail' %}<a href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a></li>{%- endif -%}
+        {%- if settings.support_phone != blank -%}<li>{% render 'icon', name: 'phone' %}<a href="tel:{{ settings.support_phone | remove: ' ' }}">{{ settings.support_phone }}</a></li>{%- endif -%}
+      </ul>
+    </div>
+
+    {%- for key in (1..2) -%}
+      {%- liquid
+        if key == 1
+          assign m = section.settings.menu_shop
+        else
+          assign m = section.settings.menu_help
+        endif
+      -%}
+      {%- if m.links.size > 0 -%}
+        <nav class="footer__col" aria-label="{{ m.title | escape }}">
+          <h2 class="footer__h">{{ m.title }}</h2>
+          <ul>{%- for link in m.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+        </nav>
+      {%- endif -%}
+    {%- endfor -%}
+
+    <nav class="footer__col" aria-label="{{ 'footer.legal' | t }}">
+      <h2 class="footer__h">{{ 'footer.legal' | t }}</h2>
+      <ul>
+        {%- if section.settings.menu_legal.links.size > 0 -%}
+          {%- for link in section.settings.menu_legal.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+        {%- else -%}
+          {%- for policy in shop.policies -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wrap footer__base">
+    {%- if shop.enabled_payment_types.size > 0 -%}
+      <ul class="payments" aria-label="{{ 'footer.payment_methods' | t }}">
+        {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'payments__icon' }}</li>{%- endfor -%}
+      </ul>
+    {%- endif -%}
+    {% render 'trader-identity' %}
+    <p class="footer__copy">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "blurb", "label": "Short text", "default": "Considered pieces for a calmer home, delivered free across the UK." },
+    { "type": "link_list", "id": "menu_shop", "label": "Shop menu", "default": "footer" },
+    { "type": "link_list", "id": "menu_help", "label": "Help menu" },
+    { "type": "link_list", "id": "menu_legal", "label": "Legal menu" }
+  ]
+}
+{% endschema %}

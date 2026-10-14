@@ -1,0 +1,11 @@
+<section class="wrap section narrow">
+  <h1 class="page-head__title">{{ 'customer.register' | t }}</h1>
+  {%- form 'create_customer', class: 'form' -%}
+    {{ form.errors | default_errors }}
+    <div class="field"><label for="f">{{ 'customer.first_name' | t }}</label><input id="f" type="text" name="customer[first_name]" autocomplete="given-name"></div>
+    <div class="field"><label for="la">{{ 'customer.last_name' | t }}</label><input id="la" type="text" name="customer[last_name]" autocomplete="family-name"></div>
+    <div class="field"><label for="e">{{ 'contact.email' | t }}</label><input id="e" type="email" name="customer[email]" autocomplete="email" required></div>
+    <div class="field"><label for="p">{{ 'password.label' | t }}</label><input id="p" type="password" name="customer[password]" autocomplete="new-password" required></div>
+    <button class="btn" type="submit">{{ 'customer.register' | t }}</button>
+  {%- endform -%}
+</section>

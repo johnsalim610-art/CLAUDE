@@ -1,0 +1,15 @@
+<section class="wrap section narrow">
+  <h1 class="page-head__title">{{ 'customer.addresses' | t }}</h1>
+  {%- for address in customer.addresses -%}
+    <div class="notice">{{ address | format_address }}</div>
+  {%- endfor -%}
+  {%- form 'customer_address', customer.new_address, class: 'form' -%}
+    <h2 class="section__title">{{ 'customer.add_address' | t }}</h2>
+    <div class="field"><label for="a1">{{ 'customer.address1' | t }}</label><input id="a1" name="address[address1]" autocomplete="address-line1"></div>
+    <div class="field"><label for="ci">{{ 'customer.city' | t }}</label><input id="ci" name="address[city]" autocomplete="address-level2"></div>
+    <div class="field"><label for="zi">{{ 'customer.zip' | t }}</label><input id="zi" name="address[zip]" autocomplete="postal-code"></div>
+    <input type="hidden" name="address[country]" value="United Kingdom">
+    <button class="btn" type="submit">{{ 'customer.add_address' | t }}</button>
+  {%- endform -%}
+  <p><a class="link" href="{{ routes.account_url }}">&larr; {{ 'customer.account' | t }}</a></p>
+</section>
