@@ -7,7 +7,7 @@
           <a href="{{ c.url }}">
             <div class="tile__media">
               {%- if c.featured_image -%}
-                {{ c.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: c.title | escape }}
+                {{ c.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: c.title }}
               {%- else -%}
                 {{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}
               {%- endif -%}

@@ -4,10 +4,11 @@
     {%- assign featured = current.featured_media | default: product.featured_media -%}
     <div class="product__main">
       {%- if featured -%}
+        {%- assign main_alt = featured.alt | default: product.title -%}
         {{ featured | image_url: width: 1500 | image_tag:
           widths: '600, 900, 1200, 1500',
           sizes: '(min-width: 990px) 55vw, 100vw',
-          alt: featured.alt | default: product.title | escape,
+          alt: main_alt,
           data-main-image: ''
         }}
       {%- else -%}
@@ -88,7 +89,7 @@
   "name": {{ product.title | json }},
   "description": {{ product.description | strip_html | truncate: 500 | json }},
   {%- if product.featured_image -%}"image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],{%- endif -%}
-  "brand": { "@type": "Brand", "name": {{ product.metafields.mm-google-shopping.brand | default: product.vendor | json }} },
+  "brand": { "@type": "Brand", "name": {{ product.metafields['mm-google-shopping'].brand | default: product.vendor | json }} },
   {%- if current.sku != blank -%}"sku": {{ current.sku | json }},{%- endif -%}
   {%- if current.barcode != blank -%}"gtin": {{ current.barcode | json }},{%- endif -%}
   "offers": {
